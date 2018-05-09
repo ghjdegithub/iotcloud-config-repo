@@ -1,0 +1,74 @@
+spring:
+  profiles:
+    active: dev
+  rabbitmq:
+    host: 192.168.20.128
+    port: 5672
+    username: admin
+    password: 123456
+  redis:
+    host: 192.168.20.128
+    password:
+    port: 6379
+    timeout: 0
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: iotcloud
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    initial-size: 10
+    min-idle: 10
+    max-active: 20
+    test-on-borrow: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://root:root@iotcloud-eureka:8761/eureka/
+iotcloud:
+  server:
+    eureka:
+      port: 8761
+      hostname: iotcloud-eureka
+      serviceUrl: http://root:root@iotcloud-eureka:8761/eureka/
+    discovery:
+      port: 8080
+      hostname: iotcloud-discovery
+      serviceUrl: http://admin:admin@iotcloud-discovery:8080
+    gateway:
+      port: 80
+      hostname: iotcloud-gateway
+    monitor:
+      port: 8010
+      hostname: iotcloud-monitor
+      serviceUrl: http://iotcloud-monitor:8010
+    zipkin:
+      port: 8020
+      hostname: iotcloud-zipkin
+      serviceUrl: http://iotcloud-zipkin:8020
+    provider:
+      ehc:
+        port: 8040
+        hostname: iotcloud-provider-ehc
+      mdc:
+        port: 8030
+        hostname: iotcloud-provider-mdc
+      omc:
+        port: 8050
+        hostname: iotcloud-provider-omc
+      opc:
+        port: 8070
+        hostname: iotcloud-provider-opc
+      ptc:
+        port: 8060
+        hostname: iotcloud-provider-ptc
+      uac:
+        port: 8000
+        hostname: iotcloud-provider-uac
+    web:
+      mall:
+        port: 9000
+        hostname: iotcloud-web-mall
+  auth:
+    jwt:
+      expiredRemainMinutes: 20
+      expiredMinutes: 120
